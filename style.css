@@ -213,7 +213,6 @@ html, body {
   margin: 6px;
   padding: 16px 20px;
   font-family: "Tahoma", Geneva, sans-serif;
-  max-height: 480px;
   overflow-y: auto;
 }
 .resume-body h1 {
