@@ -19,6 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (taskbarButtons[key]) taskbarButtons[key].classList.add('active');
   }
 
+  function centerWindow(win) {
+    if (win.dataset.positioned) return;
+    win.dataset.positioned = 'true';
+    win.style.visibility = 'hidden';
+    win.style.display = 'flex';
+    const w = win.offsetWidth;
+    const h = win.offsetHeight;
+    win.style.visibility = '';
+    const deskW = window.innerWidth;
+    const deskH = window.innerHeight - 30;
+    const openCount = document.querySelectorAll('.window.open').length;
+    const offset = Math.min(openCount, 6) * 24;
+    let left = (deskW - w) / 2 + offset;
+    let top = (deskH - h) / 2 + offset;
+    left = Math.max(8, Math.min(left, deskW - w - 8));
+    top = Math.max(8, Math.min(top, deskH - h - 8));
+    win.style.left = left + 'px';
+    win.style.top = top + 'px';
+  }
+
   function openWindow(key) {
     const win = windowIdFor(key);
     if (!win) return;
@@ -26,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       win.classList.add('open');
       addTaskbarButton(key, win);
     }
+    centerWindow(win);
     win.style.display = 'flex';
     focusWindow(win);
   }
