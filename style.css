@@ -202,8 +202,8 @@ html, body {
   border-left: 1px solid var(--shadow);
   margin: 8px;
   min-height: 260px;
-  font-size: 14px;      
-  line-height: 1.6;     
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .resume-body {
