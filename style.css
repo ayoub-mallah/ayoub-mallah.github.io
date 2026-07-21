@@ -272,6 +272,14 @@ html, body {
 }
 
 .projects-body { min-height: 160px; }
+.projects-body ul {
+  margin: 4px 0 4px 18px;
+  padding: 0;
+}
+.projects-body li {
+  margin-bottom: 3px;
+  line-height: 1.35;
+}
 .project-item {
   display: flex;
   gap: 12px;
