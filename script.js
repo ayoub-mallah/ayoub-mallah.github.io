@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const API_URL = "https://your-blog-api.up.railway.app"; // swap for your real deployed URL
+let blogLoaded = false;
+
+async function loadBlogPosts() {
+  const container = document.getElementById('blog-posts');
+  const status = document.getElementById('blog-status');
+  try {
+    const res = await fetch(`${API_URL}/posts`);
+    if (!res.ok) throw new Error(`API returned ${res.status}`);
+    const posts = await res.json();
+
+    if (posts.length === 0) {
+      container.textContent = "No posts yet.";
+      status.textContent = "0 object(s)";
+      return;
+    }
+
+    container.innerHTML = posts.map(post => {
+      const date = new Date(post.created_at).toLocaleDateString();
+      const body = escapeHtml(post.body);
+      return `${date}\n${body}\n\n${'—'.repeat(30)}\n\n`;
+    }).join('').trim();
+
+    status.textContent = `${posts.length} object(s)`;
+  } catch (err) {
+    container.textContent = "Couldn't load posts right now.";
+    console.error(err);
+  }
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
   const windows = document.querySelectorAll('.window');
   const taskbarWindows = document.getElementById('taskbar-windows');
   const startBtn = document.getElementById('start-btn');
@@ -40,16 +75,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openWindow(key) {
-    const win = windowIdFor(key);
-    if (!win) return;
-    if (!win.classList.contains('open')) {
-      win.classList.add('open');
-      addTaskbarButton(key, win);
-    }
-    centerWindow(win);
-    win.style.display = 'flex';
-    focusWindow(win);
+  const win = windowIdFor(key);
+  if (!win) return;
+  if (!win.classList.contains('open')) {
+    win.classList.add('open');
+    addTaskbarButton(key, win);
   }
+  centerWindow(win);
+  win.style.display = 'flex';
+  focusWindow(win);
+
+  if (key === 'blog' && !blogLoaded) {
+    blogLoaded = true;
+    loadBlogPosts();
+  }
+}
 
   function closeWindow(key) {
     const win = windowIdFor(key);
