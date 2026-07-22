@@ -31,6 +31,11 @@
     <span>Contact Me</span>
   </div>
 
+  <div class="icon" data-window="blog" tabindex="0">
+  <div class="icon-img icon-folder"></div>
+  <span>Blog.txt</span>
+</div>
+
   <div class="icon" data-window="bin" tabindex="0">
     <div class="icon-img icon-bin"></div>
     <span>Recycle Bin</span>
@@ -164,6 +169,22 @@ Thanks for stopping by.
     <div class="status-bar"><span>Ready</span></div>
   </div>
 
+  <!-- ===== Window: Blog ===== -->
+<div class="window" id="window-blog" style="top:70px; left:160px; width:420px; height:400px;">
+  <div class="title-bar">
+    <span class="title-text"><span class="title-icon icon-folder"></span>blog.txt - Notepad</span>
+    <div class="title-controls">
+      <button class="min-btn" aria-label="Minimize">_</button>
+      <button class="max-btn" aria-label="Maximize">▢</button>
+      <button class="close-btn" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="menu-bar"><span>File</span><span>Edit</span><span>Search</span><span>Help</span></div>
+  <div class="window-body notepad-body" id="blog-posts">
+    Loading posts...
+  </div>
+  <div class="status-bar"><span id="blog-status">Ready</span></div>
+</div>
   <!-- ===== Window: Recycle Bin ===== -->
   <div class="window" id="window-bin" style="top:160px; left:260px; width:300px;">
     <div class="title-bar">
@@ -203,6 +224,7 @@ Thanks for stopping by.
     <div class="start-item" data-window="resume">My Resume.doc</div>
     <div class="start-item" data-window="projects">Projects</div>
     <div class="start-item" data-window="contact">Contact Me</div>
+    <div class="start-item" data-window="blog">Blog.txt</div>
     <div class="start-divider"></div>
     <div class="start-item" id="shutdown-item">Shut Down...</div>
   </div>
