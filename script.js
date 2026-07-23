@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API_URL = "https://your-blog-api.up.railway.app"; // swap for your real deployed URL
+  const API_URL = "https://blog-api-production-ad9f.up.railway.app"; // swap for your real deployed URL
 let blogLoaded = false;
 
 async function loadBlogPosts() {
