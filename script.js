@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API_URL = "https://blog-api-production-ad9f.up.railway.app"; // swap for your real deployed URL
+  const API_URL = "https://blog-api-production-ad9f.up.railway.app"; 
 let blogLoaded = false;
 
 async function loadBlogPosts() {
@@ -17,7 +17,7 @@ async function loadBlogPosts() {
     }
 
     container.innerHTML = posts.map(post => {
-      const date = new Date(post.created_at).toLocaleDateString();
+      const date = new Date(post.created_at).toLocaleDateString('en-US', { timeZone: 'America/New_York' });
       const body = escapeHtml(post.body);
       return `${date}\n${body}\n\n${'—'.repeat(30)}\n\n`;
     }).join('').trim();
